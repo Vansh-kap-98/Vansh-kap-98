@@ -150,31 +150,15 @@ reusable component architectures and getting immersive scenes to hold their fram
 
 </div>
 
-<!-- These cards come from free third-party services. The classic github-readme-stats and
-     github-readme-activity-graph public instances are currently rate-limited and render as broken
-     images, which is why they aren't used here. If a card below ever breaks, self-host the
-     generator or drop it — a broken image looks worse than no card. -->
-
 ---
 
 ### <samp>🌍 Contribution World</samp>
 
 <div align="center">
-  <img alt="Contribution World — pixel-art terrain built from my contribution graph, with a miner walking across it" src="./contribution-world.svg" width="900" />
+  <img alt="Contribution World — pixel-art terrain built from my contribution graph, with a miner walking across it" src="./contribution-world.svg?v=2" width="900" />
 </div>
 
 <sub>Each column is a day; stack height is that day's contribution count. The miner works the whole year on a 19s loop — walking, swinging a pickaxe and breaking the top block of each day it steps on, hopping gaps and climbing onto peaks, and sitting down to rest on the tall ones. Sun and moon cross behind it on a 20s day/night cycle. Peaks are flagged with what shipped there: ⚔️ game dev, ⚙️ Release Radar, 🧪 StyleGAN2-ADA, 📕 sourcemeta C++.</sub>
-
-<details>
-<summary><b><samp>⚙️ Setup — repo + the one thing to know about this SVG</samp></b></summary>
-<br />
-
-1. Create a **public** repo named exactly `Vansh-kap-98` — GitHub then renders its README on your profile.
-2. Rename the delivered `contribution-world.svg.txt` to `contribution-world.svg`, then commit it and `README.md` side by side at the repo root. The relative `./contribution-world.svg` path is what makes it work with no Action, no API, no server.
-3. **The terrain is hand-authored, not live.** GitHub's image sandbox runs no JavaScript, so an embedded SVG cannot fetch your contribution API. The heights are a stylised year with the four milestone peaks placed deliberately. Editing them: open the SVG, find the `data`/`seed` block heights, adjust, done.
-4. It animates because every keyframe lives *inside* the SVG as CSS — the same mechanism the contribution-snake uses. Respects `prefers-reduced-motion`.
-
-</details>
 
 <details>
 <summary><b><samp>🎓 Credentials & coursework</samp></b></summary>
