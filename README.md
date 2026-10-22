@@ -7,7 +7,7 @@
 <p>
   <a href="https://vansh-webdev-portfolio.vercel.app/"><img alt="portfolio" src="https://img.shields.io/badge/portfolio-A78BFA?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0D1117" /></a>
   <a href="https://www.linkedin.com/in/vansh-kapoor-03a7572a7/"><img alt="linkedin" src="https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0D1117" /></a>
-  <a href="mailto:v.ansh.kap.004@gmail.com"><img alt="email" src="https://img.shields.io/badge/email-EA4335?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0D1117" /></a>
+  <a href="mailto:vansh.kap.98@gmail.com"><img alt="email" src="https://img.shields.io/badge/email-EA4335?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0D1117" /></a>
   <img alt="location" src="https://img.shields.io/badge/Jaipur,_IN-0D1117?style=for-the-badge&logo=googlemaps&logoColor=A78BFA" />
 </p>
 
@@ -25,16 +25,18 @@ I write code at both ends of the stack: **memory allocators in C++** and **shade
 I care about understanding systems deeply, not just shipping features.
 
 - 🎓 B.Tech CSE (AI & ML), Manipal University Jaipur — 2023–2027
-- 🧩 Open-source contributor to [`sourcemeta/core`](https://github.com/sourcemeta/core) and [`sourcemeta/blaze`](https://github.com/sourcemeta/blaze) — mimalloc integration and direct dispatch for array assertions
-- 🌍 Leading the Indian team on **Cash Compass**, an international collab with Southern Federal University (Taganrog, Russia)
-- 🔬 StyleGAN2-ADA work on medical imaging data scarcity, presented at **AIC 2026**
+- 🧩 **12 merged PRs** across [`sourcemeta/core`](https://github.com/sourcemeta/core) and [`sourcemeta/blaze`](https://github.com/sourcemeta/blaze) — rebuilt Blaze's Draft 3 canonicalizer into a graph form (partition refinement), plus a validator soundness fix, `unevaluatedProperties` elimination and a mimalloc integration; Draft 4 port in review
+- 🛡️ Co-built **Aegis**, a policy-gated governance runtime for autonomous AI agents (Gemini + Vertex AI/ADK on Cloud Run)
+- 🌍 Leading the Indian team on **Cash Compass**, an international collab with Southern Federal University (Taganrog, Russia) — React web app + Flutter mobile app
+- 🔬 StyleGAN2-ADA work on medical imaging data scarcity, published at **IEEE AIC 2026** (second author)
+- 🎪 Lead Convener & Host of **Hacktoberfest 2026 x MUJ** — 200+ attendees
 - 💼 Open to SWE internships and freelance 3D web work
 - 🎧 Learning Japanese, producing music, designing gameplay systems
 
 ```
 now        →  Architecture Lead, Cash Compass · OSS contributor, Sourcemeta Core & Blaze
-building   →  Release Radar — BYOK AI changelog generator (Electron)
-researching→  StyleGAN2-ADA for medical imaging data scarcity
+building   →  Cash Compass — monochrome redesign + React web ⇄ Flutter feature parity
+shipped    →  Aegis (agent governance) · Release Radar (BYOK changelog app)
 ask me     →  CMake pain, allocator benchmarks, why your Three.js scene drops frames
 ```
 
@@ -43,7 +45,7 @@ ask me     →  CMake pain, allocator benchmarks, why your Three.js scene drops 
 ### <samp>🧰 Tech Stack</samp>
 
 <p>
-  <img alt="stack" src="https://skillicons.dev/icons?i=cpp,python,ts,js,react,threejs,flutter,dart,electron,nodejs,flask,django,postgres,mongodb,supabase,tensorflow,docker,cmake,git,githubactions,unity,vercel&perline=11" />
+  <img alt="stack" src="https://skillicons.dev/icons?i=cpp,python,ts,js,react,threejs,flutter,dart,electron,framer,tailwind,nodejs,flask,django,postgres,mongodb,supabase,tensorflow,gcp,docker,cmake,git,githubactions,vercel&perline=12" />
 </p>
 
 <details>
@@ -51,10 +53,10 @@ ask me     →  CMake pain, allocator benchmarks, why your Three.js scene drops 
 <br />
 
 **Languages** — C++, Python, JavaScript (ES6+), TypeScript, SQL, Dart
-**Frontend** — React, Three.js, WebGL, Flutter
+**Frontend & mobile** — React, Three.js, WebGL, Flutter, Electron, Framer, Tailwind CSS
 **Backend & data** — Node.js, Flask, Django, REST APIs, MySQL, PostgreSQL, MongoDB, Supabase
-**AI/ML** — PyTorch, TensorFlow, scikit-learn, HuggingFace Transformers, RAG pipelines, FAISS
-**Build & DevOps** — CMake, Docker, Git, GitHub Actions, Vercel, Google Benchmark
+**AI/ML** — Gemini API, Google ADK, agentic AI, PyTorch, TensorFlow, scikit-learn, RAG pipelines, FAISS
+**Cloud & DevOps** — GCP (Vertex AI, Cloud Run, Firestore, Pub/Sub), CMake, Docker, Git, GitHub Actions, Vercel, Google Benchmark
 
 </details>
 
@@ -66,21 +68,45 @@ ask me     →  CMake pain, allocator benchmarks, why your Three.js scene drops 
 <tr>
 <td width="50%" valign="top">
 
+**🧮 [Blaze: Draft 3 canonicalizer → graph form](https://github.com/sourcemeta/blaze/pull/1095)**
+<sub>Merged #1095 · #1058 · #1075 · #1074 · #1148 · Draft 4 port [#1140](https://github.com/sourcemeta/blaze/pull/1140) in review</sub>
+
+Rewrote canonical Draft 3 schemas into a **graph**: every subschema becomes an entry in one flat `definitions` table, and equivalent entries are merged with **partition refinement** (hashing bodies can't merge mutually recursive subschemas). Checked idempotence and reference integrity across 534 trace schemas. It builds on a soundness fix where distributing keywords over type unions silently weakened `additionalProperties` ([#1058](https://github.com/sourcemeta/blaze/pull/1058)), and on identifier elimination ([#1075](https://github.com/sourcemeta/blaze/pull/1075)).
+
+<sub>`C++` `JSON Schema` `Compilers` `Graph algorithms`</sub>
+
+</td>
+<td width="50%" valign="top">
+
 **⚡ [mimalloc in Sourcemeta Core](https://github.com/sourcemeta/core/pull/2708)**
 <sub>Merged PR #2708 · ~30 C++ libraries</sub>
 
-Integrated the mimalloc allocator across the CMake build for Linux — **40–70% latency improvement**
+Integrated the mimalloc allocator across the CMake build — **40–70% latency improvement**
 on 10-run aggregated Google Benchmark suites. Diagnosed an export-set collision and a
 sanitizer/allocator CI crash on the way; verified in Docker across static and shared builds.
-Follow-up: [`blaze` PR #975](https://github.com/sourcemeta/blaze/pull/975), direct dispatch for array assertions.
 
 <sub>`C++` `CMake` `Docker` `Google Benchmark`</sub>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+**🛡️ [Aegis](https://aegis-620090557366.us-central1.run.app)**
+<sub>Governance runtime for autonomous AI agents · co-built</sub>
+
+Every agent tool call goes through a policy gateway — no direct agent-to-resource path. Untrusted input
+is screened (Model Armor), risky actions wait on human approval, state survives crashes, and everything
+lands in an audit trail. Runs on Gemini 3.6 Flash via Vertex AI/ADK, Cloud Run and Pub/Sub. The
+enterprise systems it governs are simulators.
+
+<sub>`Gemini` `Vertex AI` `Google ADK` `Cloud Run` `Pub/Sub`</sub>
 
 </td>
 <td width="50%" valign="top">
 
 **🩻 [Synthetic Chest X-rays](https://github.com/Vansh-kap-98/stylegan-pneumonia)**
-<sub>StyleGAN2-ADA · 256×256 · presented at AIC 2026</sub>
+<sub>StyleGAN2-ADA · 256×256 · published at IEEE AIC 2026</sub>
 
 Class-conditional pipeline: 8-layer mapping network, AdaIN, adaptive discriminator augmentation,
 R1 regularization. **FID 25.30 / KID 0.02** on 5,232 samples — enough fidelity to push a downstream
@@ -93,7 +119,7 @@ VGG16 pneumonia classifier to **97.99%** accuracy.
 <tr>
 <td width="50%" valign="top">
 
-**📝 Release Radar**
+**📝 [Release Radar](https://github.com/Vansh-kap-98/release-radar-app)**
 <sub>Electron + React desktop app</sub>
 
 Turns any GitHub commit/tag range into a publish-ready changelog. **BYOK across 4 providers**
@@ -109,10 +135,10 @@ is Electron-free and reused unmodified in a companion GitHub Action.
 **💰 [Cash Compass](https://cash-compass-smoky.vercel.app/)**
 <sub>Architecture Lead · India ⇄ Russia</sub>
 
-Cross-platform expense tracker: React/TypeScript dashboard and a Flutter mobile app over one shared
-Supabase backend, with on-device OCR receipt parsing and real-time balance sync. I own the system
-design and direct the Indian dev team, working with the Institute of Computer Technologies and
-Information Security in Taganrog.
+Cross-platform finance app: React/TypeScript dashboard and a Flutter mobile app over one shared
+Supabase backend, with on-device OCR receipt parsing. Balance is derived, never stored, so the UI
+can't drift from the data. I own the system design and direct the Indian dev team, working with
+Southern Federal University in Taganrog.
 
 <sub>`TypeScript` `Flutter` `Supabase` `OCR`</sub>
 
@@ -129,7 +155,7 @@ reusable component architectures and getting immersive scenes to hold their fram
 
 | Site | What it is |
 | --- | --- |
-| [anotherskyexplore.com](https://www.anotherskyexplore.com/) | Travel brand, 3D hero experience |
+| [anotherskyexplore.com](https://www.anotherskyexplore.com/) | Pushkar tour operator, 3D hero experience, local-SEO foundations |
 | [ICCAIML '26](https://iccaiml-26-main.vercel.app/) | International conference site |
 | [Portfolio](https://vansh-webdev-portfolio.vercel.app/) | My own playground |
 
@@ -166,9 +192,11 @@ reusable component architectures and getting immersive scenes to hold their fram
 
 **Education** — B.Tech CSE (AI & ML), Manipal University Jaipur, 2023–2027 · CGPA 7.96 (through 6th sem)
 
+**Publication** — *High-Resolution Synthetic Augmentation for Pneumonia Detection*, IEEE AIC 2026 (co-author)
+
 **Certifications** — Microsoft Azure AI Fundamentals · Oracle SQL · Red Hat DBMS · NPTEL (Machine Learning, DAA, Deep Learning)
 
-**Achievement** — National Qualifier, Smart India Hackathon 2025
+**Achievements** — Lead Convener & Host, Hacktoberfest 2026 (200+ attendees) · National Qualifier, Smart India Hackathon 2025
 
 **Also** — Student Placement Coordinator for the AIML department, running employer outreach for 300+ students.
 
@@ -186,5 +214,5 @@ product instinct comes from the game design side.
 
 <div align="center">
 <br />
-<sub><i>⭐️ Always open to interesting problems — <a href="mailto:v.ansh.kap.004@gmail.com">say hi</a>.</i></sub>
+<sub><i>⭐️ Always open to interesting problems — <a href="mailto:vansh.kap.98@gmail.com">say hi</a>.</i></sub>
 </div>
